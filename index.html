@@ -18,7 +18,8 @@
   --btn-no:#3d1f4d; --btn-no-text:#ffc9df;
 }
 *{box-sizing:border-box;margin:0}
-body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+*{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+img,svg{-webkit-user-drag:none;user-drag:none}
 input,textarea{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 html{scroll-behavior:smooth}
 body{
@@ -34,7 +35,7 @@ button{font:inherit;cursor:pointer;border:0;color:inherit;-webkit-tap-highlight-
 button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
 /* ===== TOP BAR ===== */
-.bar{width:100%;max-width:520px;display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px;z-index:5}
+.bar{width:100%;max-width:520px;display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px;z-index:5}
 .chip{min-height:44px;min-width:44px;padding:0 14px;border-radius:22px;background:var(--card);
   box-shadow:0 4px 14px rgba(255,77,136,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.9rem;transition:transform .2s}
 .chip:hover:not(:disabled){transform:translateY(-2px)}
@@ -43,21 +44,21 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 /* ===== CARD ===== */
 .card{
   position:relative;width:100%;max-width:520px;background:var(--card);border-radius:32px;
-  padding:28px 22px 26px;text-align:center;box-shadow:var(--shadow);
+  padding:20px 18px 18px;text-align:center;box-shadow:var(--shadow);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);
   transition:background .5s;z-index:2;
 }
 .hidden{display:none!important}
 .screen{animation:fadeIn .6s ease both}
 @keyframes fadeIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
-.eyebrow{color:var(--text);font:700 1.35rem Georgia,serif;margin-bottom:4px}
-.q{font-size:clamp(1.9rem,8vw,2.6rem);color:var(--accent);margin:4px 0 20px}
-.sub{color:var(--muted);margin-bottom:16px;font-size:1.05rem}
-.catwrap{position:relative;width:170px;margin:0 auto 6px}
-.cat{width:170px;height:auto;display:block;overflow:visible;pointer-events:none}
+.eyebrow{color:var(--text);font:700 1.2rem Georgia,serif;margin-bottom:2px}
+.q{font-size:clamp(1.7rem,7vw,2.3rem);color:var(--accent);margin:2px 0 14px}
+.sub{color:var(--muted);margin-bottom:12px;font-size:.98rem}
+.catwrap{position:relative;z-index:1;width:150px;margin:0 auto 2px;touch-action:manipulation}
+.cat{width:150px;height:auto;display:block;overflow:visible;pointer-events:none}
 .hit{pointer-events:visiblePainted;cursor:pointer}
 .cat *{-webkit-tap-highlight-color:transparent}
-.pop{position:absolute;top:10%;font-size:1.5rem;pointer-events:none;animation:floatUp 1.3s ease-out forwards}
+.pop{position:absolute;top:10%;font-size:1.4rem;pointer-events:none;animation:floatUp 1.3s ease-out forwards}
 @keyframes floatUp{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:1}100%{transform:translateY(-60px) scale(1.2);opacity:0}}
 
 /* ----- living cat: transform-only animations (cheap on phones) ----- */
@@ -68,6 +69,9 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .tailIdle{transform-origin:148px 212px;animation:swing 2.8s ease-in-out infinite}
 @keyframes swing{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(9deg)}}
 .tail{transform-origin:148px 212px}
+.tailTip{transform-origin:186px 168px;animation:tip 2.8s ease-in-out -.45s infinite}
+@keyframes tip{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-11deg)}}
+.tail.zoom{animation:wag .42s ease-in-out 3}
 .tail.wag{animation:wag .9s ease-in-out}
 @keyframes wag{0%,100%{transform:rotate(0)}15%{transform:rotate(-24deg)}35%{transform:rotate(22deg)}55%{transform:rotate(-20deg)}75%{transform:rotate(16deg)}}
 .tail.fluff{animation:fluff .8s ease-out}
@@ -91,79 +95,91 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 #all.squish{animation:squish .6s ease-out}
 @keyframes squish{30%{transform:scale(1.1,.86)}60%{transform:scale(.94,1.07)}}
 #all.spin{animation:spin .8s ease-in-out}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin{50%{transform:rotate(180deg) scale(.8)}to{transform:rotate(360deg)}}
+#all.hop{animation:hop .8s ease-out}
+@keyframes hop{25%{transform:translateY(-16px)}45%{transform:translateY(0) scale(1.04,.96)}65%{transform:translateY(-10px)}85%{transform:translateY(0) scale(1.02,.98)}}
+#all.stretch{animation:stretch 1.5s ease-in-out}
+@keyframes stretch{35%{transform:scale(.96,1.08) translateY(-3px)}70%{transform:scale(1.05,.95)}}
+#headT.nuzzle{animation:nuzzle .8s ease-in-out}
+@keyframes nuzzle{30%{transform:rotate(-8deg) translate(-4px,3px)}60%{transform:rotate(8deg) translate(4px,3px)}}
+#headT.nod{animation:nod 1.1s ease-in-out}
+@keyframes nod{30%{transform:rotate(4deg) translateY(4px)}60%{transform:rotate(-3deg) translateY(1px)}}
+.whisk{transform-origin:100px 118px}
+.whisk.wiggle{animation:whisk .6s ease-in-out}
+@keyframes whisk{20%{transform:rotate(3deg)}50%{transform:rotate(-2.5deg)}80%{transform:rotate(1deg)}}
+.nose{transform-origin:100px 112px}
+.nose.sniff{animation:sniff .5s ease-in-out}
+@keyframes sniff{30%{transform:scale(1.2,.88)}60%{transform:scale(.94,1.06)}}
 .eyes{transform-box:fill-box;transform-origin:center;transition:transform .07s}
 .cat.blink .eyes{transform:scaleY(.08)}
-.pup{transition:transform .3s}
-.cat.look-l .pup{transform:translateX(-4px)}.cat.look-r .pup{transform:translateX(4px)}
+.pup{transition:transform .25s ease-out;transform:translate(calc(var(--lx,0)*1px + var(--px,0)*1px),calc(var(--py,0)*1px))}
 
 /* ===== BUTTONS ===== */
-.btns{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:64px}
-.btn{min-height:56px;padding:0 30px;border-radius:30px;font-size:1.15rem;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btns{position:relative;z-index:3;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:56px}
+.say{position:relative;z-index:3;min-height:1.3em;margin-top:8px;font-weight:600;color:var(--accent);transition:opacity .3s}
+.btn{min-height:52px;padding:0 28px;border-radius:30px;font-size:1.1rem;font-weight:700;transition:transform .2s,box-shadow .2s}
 .yes{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
   box-shadow:0 10px 24px rgba(255,77,136,.45);animation:pulse 1.8s ease-in-out infinite}
 .yes:hover{transform:scale(1.08)}
 @keyframes pulse{50%{box-shadow:0 10px 34px rgba(255,77,136,.7);transform:scale(1.04)}}
-.no{background:var(--btn-no);color:var(--btn-no-text);border:2px solid var(--line);
+.no{background:#6b4f8a;color:#fff;border:2px solid #8a6fb0;
   transition:left .35s cubic-bezier(.3,1.6,.5,1),top .35s cubic-bezier(.3,1.6,.5,1);z-index:50;touch-action:manipulation}
-.no.moved{position:fixed}
+.no.moved{position:absolute}
+:root[data-theme="dark"] .no{background:#8a5fb0;color:#fff;border-color:#a77fd0}
 .soft{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,77,136,.35)}
 .soft:hover{transform:translateY(-2px)}
 
-/* ===== MESSAGE LINE ===== */
-.say{min-height:1.6em;margin-top:14px;font-weight:600;color:var(--accent);transition:opacity .3s}
-
 /* ===== CELEBRATION ===== */
-.big{font-size:clamp(2rem,9vw,3rem);color:var(--accent);margin-bottom:6px}
-.sec{margin-top:26px;padding-top:22px;border-top:2px dashed var(--line)}
-.sec h2{font-size:1.4rem;margin-bottom:12px}
+.big{font-size:clamp(1.9rem,8vw,2.8rem);color:var(--accent);margin-bottom:4px}
+.sec{margin-top:18px;padding-top:16px;border-top:2px dashed var(--line)}
+.sec h2{font-size:1.3rem;margin-bottom:10px}
 
 /* Gift */
-.gift{width:130px;height:130px;margin:0 auto;background:none;display:block;transition:transform .2s}
+.gift{width:120px;height:120px;margin:0 auto;background:none;display:block;transition:transform .2s}
 .gift:hover{transform:scale(1.07) rotate(-3deg)}
 .gift .lid{transform-origin:20px 40px;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
 .gift.open .lid{transform:translate(8px,-34px) rotate(-22deg)}
-.gift.open{animation:wiggle .6s}
-@keyframes wiggle{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
-.surprise{margin-top:12px;font-weight:600}
+.gift.open{animation:giftwiggle .6s}
+@keyframes giftwiggle{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.surprise{margin-top:8px;font-weight:600;font-size:.95rem}
 
 /* Envelope */
-.env{position:relative;width:240px;height:160px;margin:6px auto 0;background:none;display:block;perspective:600px}
+.env{position:relative;width:220px;height:148px;margin:4px auto 0;background:none;display:block;perspective:600px}
 .env .back{position:absolute;inset:0;background:#ffb6cf;border-radius:10px;box-shadow:0 6px 16px rgba(255,77,136,.3)}
-.env .flap{position:absolute;left:0;top:0;width:100%;height:80px;background:#ff8fb7;
+.env .flap{position:absolute;left:0;top:0;width:100%;height:74px;background:#ff8fb7;
   clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s;z-index:3;border-radius:10px 10px 0 0}
 .env .front{position:absolute;inset:0;background:linear-gradient(135deg,#ffc7dc 50%,#ffa9c8 50%);
   clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);z-index:2;border-radius:10px}
-.env .seal{position:absolute;left:50%;top:62px;transform:translateX(-50%);font-size:1.6rem;z-index:4;transition:opacity .3s}
+.env .seal{position:absolute;left:50%;top:58px;transform:translateX(-50%);font-size:1.5rem;z-index:4;transition:opacity .3s}
 .env.open .flap{transform:rotateX(180deg);z-index:1}
 .env.open .seal{opacity:0}
-.letter{margin:18px auto 0;max-width:420px;padding:22px 20px;border-radius:16px;background:#fffaf3;color:#5a3a2e;
-  text-align:left;font-family:Georgia,serif;font-size:1.08rem;line-height:1.7;white-space:pre-line;
+.letter{margin:14px auto 0;max-width:420px;padding:18px 16px;border-radius:16px;background:#fffaf3;color:#5a3a2e;
+  text-align:left;font-family:Georgia,serif;font-size:1rem;line-height:1.6;white-space:pre-line;
   box-shadow:0 8px 22px rgba(0,0,0,.12);animation:fadeIn .7s both}
 :root[data-theme="dark"] .letter{background:#f6e9dd}
 
 /* Form (link maker) */
-.field{display:block;text-align:left;margin-bottom:14px;font-weight:600;font-size:.95rem}
+.field{display:block;text-align:left;margin-bottom:12px;font-weight:600;font-size:.92rem}
 .field small{font-weight:400;color:var(--muted)}
-.field input,.field textarea{width:100%;margin-top:6px;padding:14px 16px;border-radius:16px;border:2px solid var(--line);
+.field input,.field textarea{width:100%;margin-top:5px;padding:12px 14px;border-radius:16px;border:2px solid var(--line);
   background:var(--btn-no);color:var(--text);font:inherit;font-size:1rem;resize:none;transition:border-color .2s}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-.err{min-height:1.4em;margin-bottom:8px;color:var(--accent);font-weight:600;font-size:.95rem}
-.result{margin-top:22px;animation:fadeIn .5s both}
-.result input{width:100%;padding:12px 14px;border-radius:14px;border:2px dashed var(--line);background:var(--btn-no);color:var(--text);font:inherit;font-size:.9rem;margin-bottom:12px}
+.err{min-height:1.2em;margin-bottom:6px;color:var(--accent);font-weight:600;font-size:.9rem}
+.result{margin-top:18px;animation:fadeIn .5s both}
+.result input{width:100%;padding:10px 12px;border-radius:14px;border:2px dashed var(--line);background:var(--btn-no);color:var(--text);font:inherit;font-size:.85rem;margin-bottom:10px}
 a.btn{display:inline-flex;align-items:center;text-decoration:none}
-.msgbox{margin:0 auto 18px;max-width:380px;padding:12px 16px;border-radius:16px;background:var(--btn-no);
-  color:var(--text);font-style:italic;line-height:1.5}
+.msgbox{margin:0 auto 14px;max-width:380px;padding:10px 14px;border-radius:16px;background:var(--btn-no);
+  color:var(--text);font-style:italic;line-height:1.45;font-size:.95rem}
 .eyebrow,.q,.msgbox{overflow-wrap:anywhere}
 /* Share */
-.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 
-footer{margin-top:20px;color:var(--muted);font-size:.9rem;z-index:2}
+footer{margin-top:12px;color:var(--muted);font-size:.85rem;z-index:2}
 
 /* ===== TOAST ===== */
-.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translate(-50%,30px);
-  background:var(--accent);color:#fff;padding:12px 20px;border-radius:24px;font-weight:600;opacity:0;
-  transition:.35s;pointer-events:none;z-index:200;max-width:90vw;text-align:center}
+.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,30px);
+  background:var(--accent);color:#fff;padding:10px 18px;border-radius:24px;font-weight:600;opacity:0;
+  transition:.35s;pointer-events:none;z-index:200;max-width:90vw;text-align:center;font-size:.9rem}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* ===== FLOATING HEARTS + CONFETTI ===== */
@@ -190,6 +206,9 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   #bg{display:none}
 }
+
+/* ===== SOUND TOGGLE ===== */
+#soundBtn{font-size:1.05rem}
 </style>
 </head>
 <body>
@@ -197,6 +216,7 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
 <div id="bg" aria-hidden="true"></div>
 
 <div class="bar">
+  <button class="chip" id="soundBtn" type="button" aria-label="Sound off">🔇</button>
   <button class="chip" id="themeBtn" type="button" aria-label="Switch between light and dark mode">🌙</button>
 </div>
 
@@ -208,9 +228,10 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
    <g id="all">
     <!-- tail -->
     <g class="hit tail" id="tail" data-part="tail"><g class="tailIdle">
+      <path d="M146 214C186 222 206 184 188 152" stroke="rgba(0,0,0,.004)" stroke-width="40" fill="none" stroke-linecap="round"/>
       <path d="M146 214C186 222 206 184 188 152" stroke="#f59a3c" stroke-width="17" fill="none" stroke-linecap="round"/>
       <path d="M176 200l9-7M190 184l9-5" stroke="#d9791c" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="188" cy="151" r="9" fill="#ffe3c2"/>
+      <g class="tailTip"><circle cx="188" cy="151" r="9" fill="#ffe3c2"/></g>
     </g></g>
     <!-- body -->
     <g class="hit" data-part="body"><g class="breathe">
@@ -227,8 +248,8 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
       <path d="M100 46v16M84 50l4 13M116 50l-4 13" stroke="#d9791c" stroke-width="5" stroke-linecap="round"/>
       <ellipse cx="100" cy="124" rx="34" ry="24" fill="#ffe3c2"/>
       <circle cx="58" cy="118" r="10" fill="#ff9fb8" opacity=".6"/><circle cx="142" cy="118" r="10" fill="#ff9fb8" opacity=".6"/>
-      <path d="M94 108h12l-6 8z" fill="#e0517a"/>
-      <path d="M62 112l-26-4M62 120l-26 4M138 112l26-4M138 120l26 4" stroke="#8a4a1c" stroke-width="2" stroke-linecap="round"/>
+      <path class="nose" d="M94 108h12l-6 8z" fill="#e0517a"/>
+      <g class="whisk"><path d="M62 112l-26-4M62 120l-26 4M138 112l26-4M138 120l26 4" stroke="#8a4a1c" stroke-width="2" stroke-linecap="round"/></g>
       <!-- normal -->
       <g class="m m-normal"><g class="eyes"><g class="pup"><circle cx="74" cy="94" r="7" fill="#3a2230"/><circle cx="126" cy="94" r="7" fill="#3a2230"/>
         <circle cx="76" cy="91" r="2.2" fill="#fff"/><circle cx="128" cy="91" r="2.2" fill="#fff"/></g></g>
@@ -260,12 +281,12 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
 
   <!-- ===== LINK MAKER (shown when the URL has no valid names) ===== -->
   <section id="maker" class="screen hidden">
-    <h1 class="q" style="margin-bottom:6px">Make a proposal link</h1>
+    <h1 class="q" style="margin-bottom:4px">Make a proposal link</h1>
     <p class="sub">Fill this in, then send the link to your crush.</p>
     <form id="makerForm" novalidate>
       <label class="field">Your Name<input id="fromIn" maxlength="30" autocomplete="off" placeholder="Rahim"></label>
       <label class="field">Crush's Name<input id="toIn" maxlength="30" autocomplete="off" placeholder="Anika"></label>
-      <label class="field">Personal Message <small>(optional)</small><textarea id="msgIn" rows="3" maxlength="200" placeholder="Hello..."></textarea></label>
+      <label class="field">Personal Message <small>(optional)</small><textarea id="msgIn" rows="2" maxlength="200" placeholder="Hello..."></textarea></label>
       <p class="err" id="formErr" role="alert"></p>
       <button class="btn yes" type="submit" style="animation:none">Generate My Link</button>
     </form>
@@ -296,7 +317,7 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
   <section id="celebrate" class="screen hidden">
     <h1 class="big" id="yayTitle">YAYYYY!!! ❤️</h1>
     <p class="sub" id="yayLine">You just made my day!</p>
-    <p style="font-weight:700;font-size:1.15rem" id="yayPersonal">You're officially my favorite person! 💗</p>
+    <p style="font-weight:700;font-size:1.1rem" id="yayPersonal">You're officially my favorite person! 💗</p>
 
     <div class="sec" id="giftSec">
       <h2>You have a little surprise! 🎁</h2>
@@ -361,7 +382,7 @@ const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const cat = $("cat"), say = $("say");
 
-let moodTimer = null, baseMood = "normal";   // baseMood = the mood the cat returns to
+let moodTimer = null, baseMood = "normal";
 function setMood(mood, revertMs) {
   cat.dataset.mood = mood;
   clearTimeout(moodTimer);
@@ -375,13 +396,180 @@ function toast(msg) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
 }
 
-// Funny message line, throttled so it never feels spammy
 let lastSay = 0;
 function funny(msg, force) {
   const now = Date.now();
   if (!force && now - lastSay < 1800) return;
   lastSay = now; say.textContent = msg;
 }
+
+/* =====================================================
+   SOUND ENGINE — Web Audio API, off by default, never autoplay
+   ===================================================== */
+const Sound = (() => {
+  let ctx = null;
+  let enabled = false;          // OFF by default
+  let busy = false;             // prevents overlapping sound sets
+  let busyTimer = null;
+
+  function getCtx() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+
+  function masterGain() {
+    const c = getCtx(); if (!c) return null;
+    const g = c.createGain(); g.gain.value = 0.6; g.connect(c.destination); return g;
+  }
+
+  // generic tone
+  function tone(freq, start, dur, type, vol, dest) {
+    const c = getCtx(); if (!c) return;
+    const t0 = c.currentTime + start;
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    osc.type = type || "sine";
+    osc.frequency.setValueAtTime(freq, t0);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(Math.max(vol || 0.1, 0.0002), t0 + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g); g.connect(dest || masterGain());
+    osc.start(t0); osc.stop(t0 + dur + 0.05);
+  }
+
+  // soft purr / trill
+  function purr(start, dur) {
+    const c = getCtx(); if (!c) return;
+    const t0 = c.currentTime + start;
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    const lfo = c.createOscillator();
+    const lfoGain = c.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(90, t0);
+    lfo.type = "sine"; lfo.frequency.setValueAtTime(22, t0);
+    lfoGain.gain.setValueAtTime(12, t0);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.06, t0 + 0.1);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    lfo.connect(lfoGain); lfoGain.connect(osc.frequency);
+    osc.connect(g); g.connect(masterGain());
+    lfo.start(t0); osc.start(t0); osc.stop(t0 + dur + 0.05); lfo.stop(t0 + dur + 0.05);
+  }
+
+  // smooth meow-ish glide
+  function meow(start, dur, from, to) {
+    const c = getCtx(); if (!c) return;
+    const t0 = c.currentTime + start;
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(from || 620, t0);
+    osc.frequency.exponentialRampToValueAtTime(to || 380, t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.07, t0 + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g); g.connect(masterGain());
+    osc.start(t0); osc.stop(t0 + dur + 0.05);
+  }
+
+  // short chime
+  function chime(freq, start, dur, vol) {
+    const c = getCtx(); if (!c) return;
+    tone(freq, start, dur, "sine", vol || 0.09);
+    tone(freq * 2, start, dur * 0.7, "sine", (vol || 0.09) * 0.4);
+  }
+
+  // funny "hehe" for NO
+  function hehe() {
+    const c = getCtx(); if (!c) return;
+    const t0 = c.currentTime;
+    for (let i = 0; i < 3; i++) {
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(780 + i * 40, t0 + i * 0.07);
+      osc.frequency.exponentialRampToValueAtTime(520, t0 + i * 0.07 + 0.06);
+      g.gain.setValueAtTime(0.0001, t0 + i * 0.07);
+      g.gain.exponentialRampToValueAtTime(0.055, t0 + i * 0.07 + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.07 + 0.07);
+      osc.connect(g); g.connect(masterGain());
+      osc.start(t0 + i * 0.07); osc.stop(t0 + i * 0.07 + 0.1);
+    }
+  }
+
+  // --- Reaction sound sets (each returns a duration in seconds) ---
+
+  const sounds = {
+    head_purr: () => { purr(0, 0.9); chime(880, 0.1, 0.4, 0.04); return 1.0; },
+    head_nuzzle: () => { meow(0, 0.35, 520, 400); meow(0.4, 0.3, 480, 360); return 0.9; },
+    head_ear: () => { chime(1046, 0, 0.12, 0.05); chime(1318, 0.1, 0.12, 0.05); return 0.4; },
+    head_surprise: () => { tone(660, 0, 0.1, "square", 0.05); tone(880, 0.08, 0.12, "square", 0.04); return 0.35; },
+    head_tilt: () => { meow(0, 0.25, 600, 480); return 0.4; },
+
+    body_jump: () => { chime(784, 0, 0.15, 0.07); chime(1046, 0.12, 0.15, 0.06); return 0.4; },
+    body_wiggle: () => { purr(0, 0.6); return 0.7; },
+    body_squish: () => { tone(440, 0, 0.12, "sine", 0.06); tone(330, 0.1, 0.12, "sine", 0.05); return 0.35; },
+    body_spin: () => { chime(659, 0, 0.1, 0.05); chime(784, 0.08, 0.1, 0.05); chime(988, 0.16, 0.12, 0.05); return 0.45; },
+    body_hop: () => { chime(523, 0, 0.12, 0.06); chime(659, 0.1, 0.12, 0.06); return 0.4; },
+
+    tail_wag: () => { purr(0, 0.5); chime(698, 0.05, 0.2, 0.04); return 0.6; },
+    tail_fluff: () => { tone(300, 0, 0.15, "sawtooth", 0.04); tone(240, 0.12, 0.18, "sawtooth", 0.035); return 0.4; },
+    tail_curl: () => { meow(0, 0.3, 500, 420); return 0.45; },
+    tail_zoom: () => { tone(500, 0, 0.08, "sine", 0.05); tone(700, 0.06, 0.08, "sine", 0.05); tone(900, 0.12, 0.1, "sine", 0.04); return 0.4; },
+
+    // YES celebration: louder, romantic, short sequence
+    yesFanfare: () => {
+      const c = getCtx(); if (!c) return 1.8;
+      // simple arpeggio + sparkle
+      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5, 1318.5];
+      notes.forEach((f, i) => {
+        tone(f, i * 0.16, 0.28, "sine", 0.16);
+        tone(f * 2, i * 0.16 + 0.02, 0.18, "triangle", 0.06);
+      });
+      // soft pad underneath
+      tone(261.63, 0, 1.4, "sine", 0.08);
+      tone(329.63, 0.2, 1.2, "sine", 0.06);
+      return 1.8;
+    }
+  };
+
+  function playSet(name) {
+    if (!enabled) return;
+    if (busy) return;
+    const c = getCtx(); if (!c) return;
+    busy = true;
+    clearTimeout(busyTimer);
+    const dur = sounds[name] ? (sounds[name]() || 0.6) : 0.4;
+    busyTimer = setTimeout(() => { busy = false; }, Math.max(80, dur * 1000));
+  }
+
+  function enable() { enabled = true; getCtx(); }  // must be triggered by user gesture
+  function disable() { enabled = false; }
+  function toggle() { enabled ? disable() : enable(); return enabled; }
+  function isOn() { return enabled; }
+
+  return { playSet, hehe, toggle, isOn, enable, disable };
+})();
+
+/* Sound toggle button */
+const soundBtn = $("soundBtn");
+function updateSoundBtn() {
+  const on = Sound.isOn();
+  soundBtn.textContent = on ? "🔊" : "🔇";
+  soundBtn.setAttribute("aria-label", on ? "Sound on" : "Sound off");
+}
+soundBtn.addEventListener("click", () => {
+  Sound.toggle();
+  updateSoundBtn();
+  if (Sound.isOn()) Sound.playSet("body_jump"); // tiny confirmation blip
+});
+updateSoundBtn();
 
 /* =====================================================
    THEME (saved in localStorage; fails gracefully)
@@ -438,38 +626,72 @@ function burstAt(el, n) {
 }
 
 /* =====================================================
-   THE UN-CLICKABLE NO BUTTON
+   THE UN-CLICKABLE NO BUTTON — now strictly inside the card
    ===================================================== */
 const noBtn = $("noBtn"), yesBtn = $("yesBtn"), noSlot = $("noSlot");
+const cardEl = $("card");
 let noMoved = false;
 
-// Returns true if two rects overlap (with padding)
 function overlap(a, b, pad) {
   return !(a.right + pad < b.left || a.left - pad > b.right || a.bottom + pad < b.top || a.top - pad > b.bottom);
 }
 
+// Move the NO button to a random position inside the card.
 function moveNo() {
   const w = noBtn.offsetWidth, h = noBtn.offsetHeight;
-  if (!noMoved) {                      // keep layout stable when button leaves the row
+  if (!noMoved) {
     noSlot.style.display = "inline-block";
     noSlot.style.width = w + "px"; noSlot.style.height = h + "px";
     noBtn.classList.add("moved"); noMoved = true;
   }
-  const m = 10, maxX = innerWidth - w - m, maxY = innerHeight - h - m;
-  // Areas we never cover: question, YES button, the cat, the message line
-  const avoid = [yesBtn, $("question"), cat, say].map(e => e.getBoundingClientRect());
-  const cur = noBtn.getBoundingClientRect();
+
+  // The card is the boundary. Get its position relative to its offsetParent
+  // (the card itself is the offsetParent for an absolutely-positioned child).
+  const cardRect = cardEl.getBoundingClientRect();
+  const pad = 8; // minimum gap from card edges
+
+  // Convert screen coordinates of card's content-box to button offset coordinates.
+  // Because noBtn is position:absolute inside .card, its left/top are relative to
+  // the card's padding box (border-box minus border). We'll compute a safe range
+  // using the card's client dimensions directly.
+  const cw = cardEl.clientWidth;
+  const ch = cardEl.clientHeight;
+
+  const maxX = Math.max(0, cw - w - pad);
+  const maxY = Math.max(0, ch - h - pad);
+
+  // Elements to avoid inside the card: yes button, question, cat, say line, greet.
+  const avoidEls = [yesBtn, $("question"), cat, say, $("greet")].filter(Boolean);
+  const cardInnerRect = cardEl.getBoundingClientRect();
+  const avoidRects = avoidEls.map(e => {
+    const r = e.getBoundingClientRect();
+    // convert to coordinates relative to card's client area
+    return {
+      left: r.left - cardInnerRect.left - cardEl.clientLeft,
+      top: r.top - cardInnerRect.top - cardEl.clientTop,
+      right: r.right - cardInnerRect.left - cardEl.clientLeft,
+      bottom: r.bottom - cardInnerRect.top - cardEl.clientTop,
+      width: r.width, height: r.height
+    };
+  });
+
+  // Also avoid covering the slot area itself so the button feels like it moved.
+  const currentLeft = noBtn.offsetLeft, currentTop = noBtn.offsetTop;
+
   let best = null;
-  for (let i = 0; i < 40; i++) {
-    const x = rand(m, Math.max(m, maxX)), y = rand(m, Math.max(m, maxY));
+  for (let i = 0; i < 60; i++) {
+    const x = rand(pad, Math.max(pad, maxX));
+    const y = rand(pad, Math.max(pad, maxY));
     const box = { left: x, top: y, right: x + w, bottom: y + h };
-    if (avoid.some(r => overlap(box, r, 8))) continue;
-    // Prefer a spot that is clearly far from where it is now
-    if (Math.hypot(x - cur.left, y - cur.top) < 120 && i < 39) continue;
+    if (avoidRects.some(r => overlap(box, r, 6))) continue;
+    // prefer a spot not too close to current position
+    if (Math.hypot(x - currentLeft, y - currentTop) < 60 && i < 59) continue;
     best = { x, y }; break;
   }
-  if (!best) best = { x: maxX, y: maxY };   // safe fallback: bottom-right corner
-  noBtn.style.left = best.x + "px"; noBtn.style.top = best.y + "px";
+  if (!best) best = { x: maxX, y: maxY }; // fallback: bottom-right inside card
+
+  noBtn.style.left = best.x + "px";
+  noBtn.style.top = best.y + "px";
 }
 
 // Desktop: dodge when the mouse gets close
@@ -477,17 +699,22 @@ document.addEventListener("pointermove", e => {
   if (e.pointerType !== "mouse" || !$("proposal").offsetParent) return;
   const r = noBtn.getBoundingClientRect();
   const d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
-  if (d < Math.max(r.width, 90)) {
+  if (d < Math.max(r.width, 80)) {
     setMood("surprised", 900); moveNo(); funny(pick(FUNNY));
   }
 });
 // Touch / click / keyboard: tapping NO never works, it just runs away
 noBtn.addEventListener("click", e => {
   e.preventDefault();
+  Sound.hehe();
   setMood("sad", 1600); moveNo(); funny(pick(NO_MSGS), true);
 });
-noBtn.addEventListener("pointerdown", e => {   // faster reaction on touch screens
-  if (e.pointerType === "touch") { e.preventDefault(); setMood("sad", 1600); moveNo(); funny(pick(NO_MSGS), true); }
+noBtn.addEventListener("pointerdown", e => {
+  if (e.pointerType === "touch") {
+    e.preventDefault();
+    Sound.hehe();
+    setMood("sad", 1600); moveNo(); funny(pick(NO_MSGS), true);
+  }
 });
 
 /* =====================================================
@@ -495,22 +722,22 @@ noBtn.addEventListener("pointerdown", e => {   // faster reaction on touch scree
    ===================================================== */
 const catWrap = $("catwrap"), allG = $("all"), tailG = $("tail"), headT = $("headT");
 const earL = cat.querySelector(".earL"), earR = cat.querySelector(".earR");
+const noseEl = cat.querySelector(".nose"), whiskEl = cat.querySelector(".whisk");
 
-// Pick a random item, never the same one twice in a row
 const lastPick = {};
 function pickNew(key, list) {
   let i; do { i = Math.floor(Math.random() * list.length); } while (list.length > 1 && i === lastPick[key]);
   lastPick[key] = i; return list[i];
 }
-// Restart a CSS animation class on an element for ms milliseconds
 function playClass(el, cls, ms) {
   const t = el._t || (el._t = {});
   clearTimeout(t[cls]); el.classList.remove(cls); el.getBoundingClientRect(); el.classList.add(cls);
   t[cls] = setTimeout(() => el.classList.remove(cls), ms);
 }
-function look(dir, ms) { cat.classList.remove("look-l", "look-r"); cat.classList.add("look-" + dir); setTimeout(() => cat.classList.remove("look-" + dir), ms); }
+let lookT = null;
+function look(dir, ms) { cat.style.setProperty("--lx", dir === "l" ? -4 : 4); clearTimeout(lookT); lookT = setTimeout(() => cat.style.setProperty("--lx", 0), ms); }
 function tilt(dir, ms) { headT.classList.remove("tilt-l", "tilt-r"); headT.classList.add("tilt-" + dir); setTimeout(() => headT.classList.remove("tilt-" + dir), ms); }
-function pop(list) {                           // little floating emoji
+function pop(list) {
   if (catWrap.querySelectorAll(".pop").length > 3) return;
   const s = document.createElement("span"); s.className = "pop"; s.textContent = pick(list); s.style.left = rand(15, 75) + "%";
   catWrap.appendChild(s); setTimeout(() => s.remove(), 1400);
@@ -519,41 +746,91 @@ const happy = ms => setMood(baseMood === "celebrate" ? "celebrate" : "happy", ms
 
 const REACT = {
   head: [
-    () => { happy(1800); playClass(headT, "purr", 900); pop(["😽", "💗", "✨"]); },
-    () => { happy(1500); playClass(earL, "twitch", 400); playClass(earR, "twitch", 400); pop(["💕", "😻"]); },
-    () => { setMood("surprised", 600); setTimeout(() => happy(1200), 650); pop(["❓", "✨"]); },
-    () => { happy(1600); tilt(Math.random() < .5 ? "l" : "r", 1500); pop(["🥰", "💗"]); }
+    () => { happy(1800); playClass(headT, "purr", 900); pop(["😽", "💗", "✨"]); Sound.playSet("head_purr"); },
+    () => { happy(1600); playClass(headT, "nuzzle", 800); pop(["🥰", "💞"]); Sound.playSet("head_nuzzle"); },
+    () => { happy(1500); playClass(earL, "twitch", 400); playClass(earR, "twitch", 400); pop(["💕", "😻"]); Sound.playSet("head_ear"); },
+    () => { setMood("surprised", 600); setTimeout(() => happy(1200), 650); pop(["❓", "✨"]); Sound.playSet("head_surprise"); },
+    () => { happy(1600); tilt(Math.random() < .5 ? "l" : "r", 1500); pop(["🥰", "💗"]); Sound.playSet("head_tilt"); }
   ],
   body: [
-    () => { playClass(allG, "jump", 700); pop(["🐾", "✨"]); },
-    () => { playClass(allG, "wiggle", 700); happy(1000); pop(["😹", "💗"]); },
-    () => { playClass(allG, "squish", 600); setMood("surprised", 600); pop(["💫", "🐾"]); },
-    () => { playClass(allG, "spin", 800); pop(["🌀", "😸"]); }
+    () => { playClass(allG, "jump", 700); pop(["🐾", "✨"]); Sound.playSet("body_jump"); },
+    () => { playClass(allG, "wiggle", 700); happy(1000); pop(["😹", "💗"]); Sound.playSet("body_wiggle"); },
+    () => { playClass(allG, "squish", 600); setMood("surprised", 600); pop(["💫", "🐾"]); Sound.playSet("body_squish"); },
+    () => { playClass(allG, "spin", 800); pop(["🌀", "😸"]); Sound.playSet("body_spin"); },
+    () => { playClass(allG, "hop", 800); happy(1100); pop(["🎀", "😻"]); Sound.playSet("body_hop"); }
   ],
   tail: [
-    () => { playClass(tailG, "wag", 1000); happy(1100); pop(["🐾", "😺"]); },
-    () => { playClass(tailG, "fluff", 900); setMood("surprised", 900); pop(["😳", "❗"]); },
-    () => { playClass(tailG, "curl", 1100); look("r", 1100); pop(["🌀", "😼"]); }
+    () => { playClass(tailG, "wag", 1000); happy(1100); pop(["🐾", "😺"]); Sound.playSet("tail_wag"); },
+    () => { playClass(tailG, "fluff", 900); setMood("surprised", 900); pop(["😳", "❗"]); Sound.playSet("tail_fluff"); },
+    () => { playClass(tailG, "curl", 1100); look("r", 1100); pop(["🌀", "😼"]); Sound.playSet("tail_curl"); },
+    () => { playClass(tailG, "zoom", 1300); look("r", 1300); setMood("surprised", 500); pop(["💨", "😹"]); Sound.playSet("tail_zoom"); }
   ]
 };
 
 let taps = [];
 catWrap.addEventListener("click", e => {
-  const hit = e.target.closest && e.target.closest(".hit");   // only head, body, tail react
+  const hit = e.target.closest && e.target.closest(".hit");
   if (!hit) return;
+  if (held) { held = false; return; }
   const now = Date.now(); taps = taps.filter(t => now - t < 3000); taps.push(now);
-  if (taps.length >= 7) {                                      // too many taps: the cat gets sleepy
+  if (taps.length >= 7) {
     taps = []; setMood("yawn", 2300); pop(["💤"]); funny("Okay okay, the cat needs a nap! 😴", true); return;
   }
   pickNew(hit.dataset.part, REACT[hit.dataset.part])();
+  if (taps.length === 4) burst(10, ...(() => { const r = cat.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 3]; })());
   funny(pick(FUNNY));
 });
 
-// Idle life: blinking, ear twitches, head tilts, glances, yawns, tail flicks
+// Hold the head = petting
+let holdT = null, purrI = null, held = false;
+function stopPurr() {
+  clearTimeout(holdT); holdT = null;
+  if (purrI) { clearInterval(purrI); purrI = null; setMood(baseMood); }
+}
+catWrap.addEventListener("pointerdown", e => {
+  const h = e.target.closest && e.target.closest(".hit");
+  if (!h || h.dataset.part !== "head") return;
+  held = false;
+  holdT = setTimeout(() => {
+    held = true; setMood(baseMood === "celebrate" ? "celebrate" : "happy"); pop(["😽", "💗"]);
+    playClass(headT, "purr", 900);
+    Sound.playSet("head_purr");
+    purrI = setInterval(() => { playClass(headT, "purr", 900); pop(["💗", "✨", "😽"]); Sound.playSet("head_purr"); }, 1000);
+  }, 450);
+});
+["pointerup", "pointercancel", "pointerleave"].forEach(ev => catWrap.addEventListener(ev, stopPurr));
+catWrap.addEventListener("contextmenu", e => e.preventDefault());
+
+// Eyes follow your finger / mouse
 if (!reduceMotion) {
-  const blink = () => { cat.classList.add("blink"); setTimeout(() => cat.classList.remove("blink"), 110); };
+  let eyeRaf = 0, ex = 0, ey = 0;
+  const follow = e => {
+    ex = e.clientX; ey = e.clientY;
+    if (eyeRaf) return;
+    eyeRaf = requestAnimationFrame(() => {
+      eyeRaf = 0;
+      const r = cat.getBoundingClientRect();
+      const dx = Math.max(-1, Math.min(1, (ex - (r.left + r.width / 2)) / 160));
+      const dy = Math.max(-1, Math.min(1, (ey - (r.top + r.height * .45)) / 160));
+      cat.style.setProperty("--px", (dx * 3).toFixed(2));
+      cat.style.setProperty("--py", (dy * 2.2).toFixed(2));
+    });
+  };
+  document.addEventListener("pointermove", follow, { passive: true });
+  document.addEventListener("pointerdown", follow, { passive: true });
+}
+
+// Idle life
+if (!reduceMotion) {
+  const blink = ms => { cat.classList.add("blink"); setTimeout(() => cat.classList.remove("blink"), ms || 110); };
   (function blinkLoop() {
-    setTimeout(() => { if (!document.hidden) { blink(); if (Math.random() < .25) setTimeout(blink, 230); } blinkLoop(); }, rand(2400, 5600));
+    setTimeout(() => {
+      if (!document.hidden) {
+        if (Math.random() < .15) blink(340);
+        else { blink(); if (Math.random() < .25) setTimeout(blink, 230); }
+      }
+      blinkLoop();
+    }, rand(2400, 5600));
   })();
   const IDLE = [
     () => playClass(earL, "twitch", 400),
@@ -561,7 +838,10 @@ if (!reduceMotion) {
     () => tilt(Math.random() < .5 ? "l" : "r", 1600),
     () => look(Math.random() < .5 ? "l" : "r", 1400),
     () => { if (baseMood === "normal") setMood("yawn", 2000); },
-    () => playClass(tailG, "wag", 1000)
+    () => playClass(tailG, "wag", 1000),
+    () => playClass(allG, "stretch", 1500),
+    () => playClass(headT, "nod", 1100),
+    () => { playClass(noseEl, "sniff", 500); playClass(whiskEl, "wiggle", 600); }
   ];
   (function idleLoop() {
     setTimeout(() => { if (!document.hidden && cat.dataset.mood === baseMood) pickNew("idle", IDLE)(); idleLoop(); }, rand(2500, 5500));
@@ -573,6 +853,7 @@ window.addEventListener("resize", () => { if (noMoved && $("celebrate").classLis
    YES CLICKED
    ===================================================== */
 yesBtn.addEventListener("click", () => {
+  Sound.playSet("yesFanfare");
   noBtn.classList.add("hidden"); noBtn.style.display = "none";
   $("proposal").classList.add("hidden");
   $("celebrate").classList.remove("hidden");
@@ -589,6 +870,7 @@ yesBtn.addEventListener("click", () => {
 let giftOpened = false;
 $("giftBtn").addEventListener("click", () => {
   if (giftOpened) return; giftOpened = true;
+  Sound.playSet("body_hop");
   $("giftBtn").classList.add("open");
   $("giftBtn").setAttribute("aria-label", "Gift opened");
   $("surprise").classList.remove("hidden");
@@ -606,14 +888,17 @@ $("envBtn").addEventListener("click", () => {
   env.setAttribute("aria-expanded", String(open));
   env.setAttribute("aria-label", open ? "Close the love letter" : "Open the love letter");
   $("letter").classList.toggle("hidden", !open);
-  if (open) { burstAt(env, 18); setTimeout(() => $("letter").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }), 350); }
+  if (open) {
+    Sound.playSet("head_tilt");
+    burstAt(env, 18);
+    setTimeout(() => $("letter").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }), 350);
+  }
 });
 
 /* =====================================================
    LINK SYSTEM  (?from=Rahim&to=Anika&msg=Hello)
    ===================================================== */
 const LIMIT = { name: 30, msg: 200 };
-// Strip control characters, collapse whitespace, cap length
 const clean = (v, max) => String(v || "").replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
 
 function safeParam(params, key, max) {
@@ -625,7 +910,6 @@ const qTo   = safeParam(params, "to", LIMIT.name);
 const qMsg  = safeParam(params, "msg", LIMIT.msg);
 
 function showProposal(from, to, msg) {
-  // All user text goes in through textContent, so it can never run as HTML
   $("greet").textContent = "Hey " + to + "! I'm " + from + ".";
   $("question").textContent = CONFIG.question;
   if (msg) { $("msgBox").textContent = msg; $("msgBox").classList.remove("hidden"); }
@@ -642,7 +926,7 @@ function showProposal(from, to, msg) {
 
 function showMaker() {
   $("fromIn").value = qFrom; $("toIn").value = qTo; $("msgIn").value = qMsg;
-  if (params.has("from") || params.has("to")) {      // broken / incomplete link
+  if (params.has("from") || params.has("to")) {
     $("formErr").textContent = "That link looks incomplete. Make a new one below.";
   }
   $("maker").classList.remove("hidden");
@@ -650,7 +934,7 @@ function showMaker() {
 
 function copyText(text) {
   if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-  return new Promise((res, rej) => {                       // fallback for old browsers / file://
+  return new Promise((res, rej) => {
     const ta = document.createElement("textarea");
     ta.value = text; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;opacity:0";
     document.body.appendChild(ta); ta.select();
@@ -668,26 +952,23 @@ $("makerForm").addEventListener("submit", e => {
     $(!from ? "fromIn" : "toIn").focus(); return;
   }
   $("formErr").textContent = "";
-  // URLSearchParams encodes everything safely (spaces, emoji, &, ? ...)
   try {
-    const base = location.href.split(/[?#]/)[0];          // page address without old query
+    const base = location.href.split(/[?#]/)[0];
     const sp = new URLSearchParams(); sp.set("from", from); sp.set("to", to);
     if (msg) sp.set("msg", msg);
     generatedUrl = base + "?" + sp.toString();
   } catch (err) { $("formErr").textContent = "Could not make the link. Please try again."; return; }
   snapshot = from + "|" + to + "|" + msg;
   $("linkOut").value = generatedUrl;
-  // WhatsApp's official share URL
   $("waBtn").href = "https://wa.me/?text=" + encodeURIComponent("Hey " + to + "! " + from + " has something to ask you ❤️\n" + generatedUrl);
   $("result").classList.remove("hidden");
   setMood("happy", 2500); burstAt(cat, 16);
+  Sound.playSet("body_hop");
   $("formErr").textContent = "";
   $("result").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
 });
 $("copyBtn").addEventListener("click", () =>
   copyText(generatedUrl).then(() => toast("Link copied! ❤️"), () => { $("linkOut").select(); toast("Press copy on the selected link"); }));
-// If they edit the fields after generating, hide the old link so it never goes stale
-// (only when the text really changed; some phone keyboards fire a fake "input" event on tap)
 ["fromIn", "toIn", "msgIn"].forEach(id => $(id).addEventListener("input", () => {
   const now = clean($("fromIn").value, LIMIT.name) + "|" + clean($("toIn").value, LIMIT.name) + "|" + clean($("msgIn").value, LIMIT.msg);
   if (now !== snapshot) $("result").classList.add("hidden");
