@@ -8,13 +8,13 @@
 <style>
 /* ===== THEME TOKENS ===== */
 :root{
-  --bg1:#ffe3ee; --bg2:#ffc2d9; --card:rgba(255,255,255,.86); --text:#4a2336; --muted:#8a5a70;
-  --accent:#ff4d88; --accent2:#ff7aa8; --shadow:0 20px 50px rgba(255,77,136,.25); --line:#ffd0e2;
+  --bg1:#ffe3ee; --bg2:#ffc2d9; --card:rgba(255,255,255,.88); --text:#4a2336; --muted:#8a5a70;
+  --accent:#ff4d88; --accent2:#ff7aa8; --shadow:0 18px 44px rgba(255,77,136,.22); --line:#ffd0e2;
   --btn-no:#fff; --btn-no-text:#a0486a;
 }
 :root[data-theme="dark"]{
-  --bg1:#2a1238; --bg2:#4a1d4f; --card:rgba(52,24,66,.82); --text:#ffe9f3; --muted:#d9a9c4;
-  --accent:#ff6fa5; --accent2:#c067ff; --shadow:0 20px 50px rgba(0,0,0,.45); --line:#6b3a78;
+  --bg1:#2a1238; --bg2:#4a1d4f; --card:rgba(52,24,66,.84); --text:#ffe9f3; --muted:#d9a9c4;
+  --accent:#ff6fa5; --accent2:#c067ff; --shadow:0 18px 44px rgba(0,0,0,.4); --line:#6b3a78;
   --btn-no:#3d1f4d; --btn-no-text:#ffc9df;
 }
 *{box-sizing:border-box;margin:0}
@@ -27,7 +27,7 @@ body{
   font-family:ui-rounded,"Hiragino Maru Gothic ProN","Nunito","Segoe UI",system-ui,sans-serif;
   background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;
   transition:background .5s,color .5s;overflow-x:hidden;
-  padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));
+  padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;
 }
 h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.2}
@@ -35,33 +35,32 @@ button{font:inherit;cursor:pointer;border:0;color:inherit;-webkit-tap-highlight-
 button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
 /* ===== TOP BAR ===== */
-.bar{width:100%;max-width:520px;display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px;z-index:5}
-.chip{min-height:44px;min-width:44px;padding:0 14px;border-radius:22px;background:var(--card);
-  box-shadow:0 4px 14px rgba(255,77,136,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.9rem;transition:transform .2s}
+.bar{width:100%;max-width:520px;display:flex;justify-content:flex-end;gap:8px;margin-bottom:6px;z-index:5}
+.chip{min-height:42px;min-width:42px;padding:0 13px;border-radius:21px;background:var(--card);
+  box-shadow:0 4px 14px rgba(255,77,136,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.9rem;transition:transform .2s}
 .chip:hover:not(:disabled){transform:translateY(-2px)}
-.chip:disabled{opacity:.55;cursor:not-allowed}
 
 /* ===== CARD ===== */
 .card{
-  position:relative;width:100%;max-width:520px;background:var(--card);border-radius:32px;
-  padding:20px 18px 18px;text-align:center;box-shadow:var(--shadow);
+  position:relative;width:100%;max-width:520px;background:var(--card);border-radius:28px;
+  padding:16px 16px 14px;text-align:center;box-shadow:var(--shadow);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);
   transition:background .5s;z-index:2;
 }
 .hidden{display:none!important}
-.screen{animation:fadeIn .6s ease both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
-.eyebrow{color:var(--text);font:700 1.2rem Georgia,serif;margin-bottom:2px}
-.q{font-size:clamp(1.7rem,7vw,2.3rem);color:var(--accent);margin:2px 0 14px}
-.sub{color:var(--muted);margin-bottom:12px;font-size:.98rem}
-.catwrap{position:relative;z-index:1;width:150px;margin:0 auto 2px;touch-action:manipulation}
-.cat{width:150px;height:auto;display:block;overflow:visible;pointer-events:none}
+.screen{animation:fadeIn .55s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+.eyebrow{color:var(--text);font:700 1.1rem Georgia,serif;margin-bottom:2px}
+.q{font-size:clamp(1.6rem,6.5vw,2.15rem);color:var(--accent);margin:2px 0 12px}
+.sub{color:var(--muted);margin-bottom:10px;font-size:.94rem}
+.catwrap{position:relative;z-index:1;width:132px;margin:0 auto 0;touch-action:manipulation}
+.cat{width:132px;height:auto;display:block;overflow:visible;pointer-events:none}
 .hit{pointer-events:visiblePainted;cursor:pointer}
 .cat *{-webkit-tap-highlight-color:transparent}
-.pop{position:absolute;top:10%;font-size:1.4rem;pointer-events:none;animation:floatUp 1.3s ease-out forwards}
-@keyframes floatUp{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:1}100%{transform:translateY(-60px) scale(1.2);opacity:0}}
+.pop{position:absolute;top:10%;font-size:1.3rem;pointer-events:none;animation:floatUp 1.3s ease-out forwards}
+@keyframes floatUp{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:1}100%{transform:translateY(-58px) scale(1.2);opacity:0}}
 
-/* ----- living cat: transform-only animations (cheap on phones) ----- */
+/* ----- living cat: transform-only animations ----- */
 .breathe{transform-origin:100px 232px;animation:breathe 3.4s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.02,1.035)}}
 .headBob{animation:hbob 3.4s ease-in-out infinite}
@@ -115,71 +114,70 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .pup{transition:transform .25s ease-out;transform:translate(calc(var(--lx,0)*1px + var(--px,0)*1px),calc(var(--py,0)*1px))}
 
 /* ===== BUTTONS ===== */
-.btns{position:relative;z-index:3;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:56px}
-.say{position:relative;z-index:3;min-height:1.3em;margin-top:8px;font-weight:600;color:var(--accent);transition:opacity .3s}
-.btn{min-height:52px;padding:0 28px;border-radius:30px;font-size:1.1rem;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btns{position:relative;z-index:3;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:52px}
+.say{position:relative;z-index:3;min-height:1.2em;margin-top:6px;font-weight:600;color:var(--accent);transition:opacity .3s;font-size:.92rem}
+.btn{min-height:50px;padding:0 26px;border-radius:26px;font-size:1.05rem;font-weight:700;transition:transform .2s,box-shadow .2s}
 .yes{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
-  box-shadow:0 10px 24px rgba(255,77,136,.45);animation:pulse 1.8s ease-in-out infinite}
-.yes:hover{transform:scale(1.08)}
-@keyframes pulse{50%{box-shadow:0 10px 34px rgba(255,77,136,.7);transform:scale(1.04)}}
+  box-shadow:0 8px 22px rgba(255,77,136,.45);animation:pulse 1.8s ease-in-out infinite}
+.yes:hover{transform:scale(1.07)}
+@keyframes pulse{50%{box-shadow:0 8px 30px rgba(255,77,136,.7);transform:scale(1.03)}}
 .no{background:#6b4f8a;color:#fff;border:2px solid #8a6fb0;
   transition:left .35s cubic-bezier(.3,1.6,.5,1),top .35s cubic-bezier(.3,1.6,.5,1);z-index:50;touch-action:manipulation}
 .no.moved{position:absolute}
 :root[data-theme="dark"] .no{background:#8a5fb0;color:#fff;border-color:#a77fd0}
-.soft{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,77,136,.35)}
+.soft{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(255,77,136,.35);min-height:48px;padding:0 20px;font-size:1rem}
 .soft:hover{transform:translateY(-2px)}
 
 /* ===== CELEBRATION ===== */
-.big{font-size:clamp(1.9rem,8vw,2.8rem);color:var(--accent);margin-bottom:4px}
-.sec{margin-top:18px;padding-top:16px;border-top:2px dashed var(--line)}
-.sec h2{font-size:1.3rem;margin-bottom:10px}
+.big{font-size:clamp(1.8rem,7.5vw,2.6rem);color:var(--accent);margin-bottom:4px}
+.sec{margin-top:14px;padding-top:12px;border-top:2px dashed var(--line)}
+.sec h2{font-size:1.2rem;margin-bottom:8px}
 
 /* Gift */
-.gift{width:120px;height:120px;margin:0 auto;background:none;display:block;transition:transform .2s}
+.gift{width:110px;height:110px;margin:0 auto;background:none;display:block;transition:transform .2s}
 .gift:hover{transform:scale(1.07) rotate(-3deg)}
 .gift .lid{transform-origin:20px 40px;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
 .gift.open .lid{transform:translate(8px,-34px) rotate(-22deg)}
 .gift.open{animation:giftwiggle .6s}
 @keyframes giftwiggle{25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
-.surprise{margin-top:8px;font-weight:600;font-size:.95rem}
+.surprise{margin-top:6px;font-weight:600;font-size:.9rem}
 
 /* Envelope */
-.env{position:relative;width:220px;height:148px;margin:4px auto 0;background:none;display:block;perspective:600px}
+.env{position:relative;width:200px;height:136px;margin:4px auto 0;background:none;display:block;perspective:600px}
 .env .back{position:absolute;inset:0;background:#ffb6cf;border-radius:10px;box-shadow:0 6px 16px rgba(255,77,136,.3)}
-.env .flap{position:absolute;left:0;top:0;width:100%;height:74px;background:#ff8fb7;
+.env .flap{position:absolute;left:0;top:0;width:100%;height:68px;background:#ff8fb7;
   clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s;z-index:3;border-radius:10px 10px 0 0}
 .env .front{position:absolute;inset:0;background:linear-gradient(135deg,#ffc7dc 50%,#ffa9c8 50%);
   clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);z-index:2;border-radius:10px}
-.env .seal{position:absolute;left:50%;top:58px;transform:translateX(-50%);font-size:1.5rem;z-index:4;transition:opacity .3s}
+.env .seal{position:absolute;left:50%;top:54px;transform:translateX(-50%);font-size:1.4rem;z-index:4;transition:opacity .3s}
 .env.open .flap{transform:rotateX(180deg);z-index:1}
 .env.open .seal{opacity:0}
-.letter{margin:14px auto 0;max-width:420px;padding:18px 16px;border-radius:16px;background:#fffaf3;color:#5a3a2e;
-  text-align:left;font-family:Georgia,serif;font-size:1rem;line-height:1.6;white-space:pre-line;
+.letter{margin:12px auto 0;max-width:420px;padding:16px 14px;border-radius:14px;background:#fffaf3;color:#5a3a2e;
+  text-align:left;font-family:Georgia,serif;font-size:.96rem;line-height:1.55;white-space:pre-line;
   box-shadow:0 8px 22px rgba(0,0,0,.12);animation:fadeIn .7s both}
 :root[data-theme="dark"] .letter{background:#f6e9dd}
 
 /* Form (link maker) */
-.field{display:block;text-align:left;margin-bottom:12px;font-weight:600;font-size:.92rem}
+.field{display:block;text-align:left;margin-bottom:10px;font-weight:600;font-size:.9rem}
 .field small{font-weight:400;color:var(--muted)}
-.field input,.field textarea{width:100%;margin-top:5px;padding:12px 14px;border-radius:16px;border:2px solid var(--line);
-  background:var(--btn-no);color:var(--text);font:inherit;font-size:1rem;resize:none;transition:border-color .2s}
+.field input,.field textarea{width:100%;margin-top:4px;padding:11px 13px;border-radius:14px;border:2px solid var(--line);
+  background:var(--btn-no);color:var(--text);font:inherit;font-size:.98rem;resize:none;transition:border-color .2s}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-.err{min-height:1.2em;margin-bottom:6px;color:var(--accent);font-weight:600;font-size:.9rem}
-.result{margin-top:18px;animation:fadeIn .5s both}
-.result input{width:100%;padding:10px 12px;border-radius:14px;border:2px dashed var(--line);background:var(--btn-no);color:var(--text);font:inherit;font-size:.85rem;margin-bottom:10px}
+.err{min-height:1.1em;margin-bottom:4px;color:var(--accent);font-weight:600;font-size:.88rem}
+.result{margin-top:14px;animation:fadeIn .5s both}
+.result input{width:100%;padding:9px 12px;border-radius:12px;border:2px dashed var(--line);background:var(--btn-no);color:var(--text);font:inherit;font-size:.82rem;margin-bottom:8px}
 a.btn{display:inline-flex;align-items:center;text-decoration:none}
-.msgbox{margin:0 auto 14px;max-width:380px;padding:10px 14px;border-radius:16px;background:var(--btn-no);
-  color:var(--text);font-style:italic;line-height:1.45;font-size:.95rem}
+.msgbox{margin:0 auto 12px;max-width:380px;padding:9px 13px;border-radius:14px;background:var(--btn-no);
+  color:var(--text);font-style:italic;line-height:1.4;font-size:.9rem}
 .eyebrow,.q,.msgbox{overflow-wrap:anywhere}
-/* Share */
 .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 
-footer{margin-top:12px;color:var(--muted);font-size:.85rem;z-index:2}
+footer{margin-top:10px;color:var(--muted);font-size:.8rem;z-index:2}
 
 /* ===== TOAST ===== */
-.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,30px);
-  background:var(--accent);color:#fff;padding:10px 18px;border-radius:24px;font-weight:600;opacity:0;
-  transition:.35s;pointer-events:none;z-index:200;max-width:90vw;text-align:center;font-size:.9rem}
+.toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,30px);
+  background:var(--accent);color:#fff;padding:9px 16px;border-radius:22px;font-weight:600;opacity:0;
+  transition:.35s;pointer-events:none;z-index:200;max-width:90vw;text-align:center;font-size:.88rem}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* ===== FLOATING HEARTS + CONFETTI ===== */
@@ -206,9 +204,6 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   #bg{display:none}
 }
-
-/* ===== SOUND TOGGLE ===== */
-#soundBtn{font-size:1.05rem}
 </style>
 </head>
 <body>
@@ -216,7 +211,6 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
 <div id="bg" aria-hidden="true"></div>
 
 <div class="bar">
-  <button class="chip" id="soundBtn" type="button" aria-label="Sound off">🔇</button>
   <button class="chip" id="themeBtn" type="button" aria-label="Switch between light and dark mode">🌙</button>
 </div>
 
@@ -281,7 +275,7 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
 
   <!-- ===== LINK MAKER (shown when the URL has no valid names) ===== -->
   <section id="maker" class="screen hidden">
-    <h1 class="q" style="margin-bottom:4px">Make a proposal link</h1>
+    <h1 class="q" style="margin-bottom:2px">Make a proposal link</h1>
     <p class="sub">Fill this in, then send the link to your crush.</p>
     <form id="makerForm" novalidate>
       <label class="field">Your Name<input id="fromIn" maxlength="30" autocomplete="off" placeholder="Rahim"></label>
@@ -317,7 +311,7 @@ svg[data-mood="celebrate"] .m-hat{display:inline}
   <section id="celebrate" class="screen hidden">
     <h1 class="big" id="yayTitle">YAYYYY!!! ❤️</h1>
     <p class="sub" id="yayLine">You just made my day!</p>
-    <p style="font-weight:700;font-size:1.1rem" id="yayPersonal">You're officially my favorite person! 💗</p>
+    <p style="font-weight:700;font-size:1.05rem" id="yayPersonal">You're officially my favorite person! 💗</p>
 
     <div class="sec" id="giftSec">
       <h2>You have a little surprise! 🎁</h2>
@@ -356,7 +350,6 @@ const CONFIG = {
   yayTitle:   "YAYYYY!!! ❤️",
   yayLine:    "You just made my day!",
   yesMessage: "You're officially my favorite person! 💗",
-  // Each item is one line. "" = blank line. Names are added automatically.
   letterLines: [
     "",
     "I don't know how to explain it perfectly, but you make ordinary moments feel special.",
@@ -404,15 +397,15 @@ function funny(msg, force) {
 }
 
 /* =====================================================
-   SOUND ENGINE — Web Audio API, off by default, never autoplay
+   SOUND ENGINE — Web Audio API, auto-enabled on first gesture
+   No toggle, no autoplay. Volume increased for fuller sound.
    ===================================================== */
 const Sound = (() => {
   let ctx = null;
-  let enabled = false;          // OFF by default
-  let busy = false;             // prevents overlapping sound sets
-  let busyTimer = null;
+  let ready = false;
+  let busyUntil = 0;
 
-  function getCtx() {
+  function ensure() {
     if (!ctx) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return null;
@@ -422,157 +415,184 @@ const Sound = (() => {
     return ctx;
   }
 
-  function masterGain() {
-    const c = getCtx(); if (!c) return null;
-    const g = c.createGain(); g.gain.value = 0.6; g.connect(c.destination); return g;
+  function unlock() {
+    if (ready) return;
+    const c = ensure(); if (!c) return;
+    try {
+      const b = c.createBuffer(1, 1, 22050);
+      const s = c.createBufferSource();
+      s.buffer = b; s.connect(c.destination); s.start(0);
+    } catch (e) {}
+    ready = true;
   }
 
-  // generic tone
-  function tone(freq, start, dur, type, vol, dest) {
-    const c = getCtx(); if (!c) return;
-    const t0 = c.currentTime + start;
+  // Master output gain — raised for louder, fuller sound
+  function out(vol) {
+    const c = ensure(); if (!c) return null;
+    const g = c.createGain();
+    g.gain.value = vol == null ? 1.0 : vol;
+    g.connect(c.destination);
+    return g;
+  }
+
+  function voice(o) {
+    const c = ensure(); if (!c) return;
+    const { freq, freq2, type, start, dur, vol, attack, release, dest } = o;
+    const t0 = c.currentTime + (start || 0);
     const osc = c.createOscillator();
     const g = c.createGain();
     osc.type = type || "sine";
     osc.frequency.setValueAtTime(freq, t0);
+    if (freq2 != null) osc.frequency.exponentialRampToValueAtTime(freq2, t0 + dur);
+    const a = attack == null ? 0.02 : attack;
+    const r = release == null ? dur * 0.7 : release;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(Math.max(vol || 0.1, 0.0002), t0 + 0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    osc.connect(g); g.connect(dest || masterGain());
-    osc.start(t0); osc.stop(t0 + dur + 0.05);
+    g.gain.exponentialRampToValueAtTime(Math.max(vol || 0.15, 0.0002), t0 + a);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + a + r);
+    osc.connect(g);
+    g.connect(dest || out());
+    osc.start(t0); osc.stop(t0 + a + r + 0.05);
   }
 
-  // soft purr / trill
-  function purr(start, dur) {
-    const c = getCtx(); if (!c) return;
-    const t0 = c.currentTime + start;
-    const osc = c.createOscillator();
-    const g = c.createGain();
-    const lfo = c.createOscillator();
-    const lfoGain = c.createGain();
-    osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(90, t0);
-    lfo.type = "sine"; lfo.frequency.setValueAtTime(22, t0);
-    lfoGain.gain.setValueAtTime(12, t0);
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.06, t0 + 0.1);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    lfo.connect(lfoGain); lfoGain.connect(osc.frequency);
-    osc.connect(g); g.connect(masterGain());
-    lfo.start(t0); osc.start(t0); osc.stop(t0 + dur + 0.05); lfo.stop(t0 + dur + 0.05);
+  function bell(freq, start, dur, vol) {
+    voice({ freq, type: "sine", start, dur, vol: (vol || 0.18), attack: 0.005, release: dur });
+    voice({ freq: freq * 2, type: "sine", start, dur: dur * 0.7, vol: (vol || 0.18) * 0.4, attack: 0.005, release: dur * 0.7 });
+    voice({ freq: freq * 3, type: "sine", start: start + 0.005, dur: dur * 0.5, vol: (vol || 0.18) * 0.18, attack: 0.005, release: dur * 0.5 });
   }
 
-  // smooth meow-ish glide
-  function meow(start, dur, from, to) {
-    const c = getCtx(); if (!c) return;
-    const t0 = c.currentTime + start;
+  function meow(start, dur, from, mid, to, vol) {
+    const c = ensure(); if (!c) return;
+    const t0 = c.currentTime + (start || 0);
     const osc = c.createOscillator();
     const g = c.createGain();
     osc.type = "sine";
-    osc.frequency.setValueAtTime(from || 620, t0);
+    osc.frequency.setValueAtTime(from || 520, t0);
+    osc.frequency.exponentialRampToValueAtTime(mid || 700, t0 + dur * 0.35);
     osc.frequency.exponentialRampToValueAtTime(to || 380, t0 + dur);
+    const v = vol == null ? 0.16 : vol;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.07, t0 + 0.05);
+    g.gain.exponentialRampToValueAtTime(v, t0 + 0.04);
+    g.gain.setValueAtTime(v * 0.9, t0 + dur * 0.55);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    osc.connect(g); g.connect(masterGain());
+    osc.connect(g); g.connect(out());
     osc.start(t0); osc.stop(t0 + dur + 0.05);
   }
 
-  // short chime
-  function chime(freq, start, dur, vol) {
-    const c = getCtx(); if (!c) return;
-    tone(freq, start, dur, "sine", vol || 0.09);
-    tone(freq * 2, start, dur * 0.7, "sine", (vol || 0.09) * 0.4);
+  function purr(start, dur, vol) {
+    const c = ensure(); if (!c) return;
+    const t0 = c.currentTime + (start || 0);
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    const lfo = c.createOscillator();
+    const lfoG = c.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(85, t0);
+    lfo.type = "sine";
+    lfo.frequency.setValueAtTime(24, t0);
+    lfoG.gain.setValueAtTime(10, t0);
+    const v = vol == null ? 0.14 : vol;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(v, t0 + 0.12);
+    g.gain.setValueAtTime(v, t0 + dur - 0.15);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    lfo.connect(lfoG); lfoG.connect(osc.frequency);
+    osc.connect(g); g.connect(out());
+    lfo.start(t0); osc.start(t0);
+    lfo.stop(t0 + dur + 0.05); osc.stop(t0 + dur + 0.05);
   }
 
-  // funny "hehe" for NO
+  function trill(start, notes, vol) {
+    notes.forEach((f, i) => voice({
+      freq: f, type: "triangle",
+      start: (start || 0) + i * 0.06,
+      dur: 0.14, vol: (vol || 0.14) * (1 - i * 0.08),
+      attack: 0.008
+    }));
+  }
+
   function hehe() {
-    const c = getCtx(); if (!c) return;
+    const c = ensure(); if (!c) return;
     const t0 = c.currentTime;
-    for (let i = 0; i < 3; i++) {
+    const seq = [
+      { f: 700, f2: 950, d: 0.09, v: 0.22 },
+      { f: 900, f2: 1200, d: 0.09, v: 0.20 },
+      { f: 1100, f2: 1450, d: 0.11, v: 0.18 }
+    ];
+    let t = 0;
+    seq.forEach(s => {
       const osc = c.createOscillator();
       const g = c.createGain();
       osc.type = "triangle";
-      osc.frequency.setValueAtTime(780 + i * 40, t0 + i * 0.07);
-      osc.frequency.exponentialRampToValueAtTime(520, t0 + i * 0.07 + 0.06);
-      g.gain.setValueAtTime(0.0001, t0 + i * 0.07);
-      g.gain.exponentialRampToValueAtTime(0.055, t0 + i * 0.07 + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.07 + 0.07);
-      osc.connect(g); g.connect(masterGain());
-      osc.start(t0 + i * 0.07); osc.stop(t0 + i * 0.07 + 0.1);
-    }
+      osc.frequency.setValueAtTime(s.f, t0 + t);
+      osc.frequency.exponentialRampToValueAtTime(s.f2, t0 + t + s.d);
+      g.gain.setValueAtTime(0.0001, t0 + t);
+      g.gain.exponentialRampToValueAtTime(s.v, t0 + t + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + t + s.d);
+      osc.connect(g); g.connect(out());
+      osc.start(t0 + t); osc.stop(t0 + t + s.d + 0.03);
+      t += s.d * 0.75;
+    });
   }
 
-  // --- Reaction sound sets (each returns a duration in seconds) ---
+  function sparkle(start) {
+    bell(1318, start, 0.12, 0.14);
+    bell(1568, start + 0.06, 0.12, 0.12);
+    bell(1976, start + 0.12, 0.14, 0.10);
+  }
 
-  const sounds = {
-    head_purr: () => { purr(0, 0.9); chime(880, 0.1, 0.4, 0.04); return 1.0; },
-    head_nuzzle: () => { meow(0, 0.35, 520, 400); meow(0.4, 0.3, 480, 360); return 0.9; },
-    head_ear: () => { chime(1046, 0, 0.12, 0.05); chime(1318, 0.1, 0.12, 0.05); return 0.4; },
-    head_surprise: () => { tone(660, 0, 0.1, "square", 0.05); tone(880, 0.08, 0.12, "square", 0.04); return 0.35; },
-    head_tilt: () => { meow(0, 0.25, 600, 480); return 0.4; },
+  function yesFanfare() {
+    const c = ensure(); if (!c) return;
+    const t0 = c.currentTime;
+    [261.63, 329.63, 392.0].forEach((f, i) => voice({
+      freq: f, type: "sine", start: i * 0.05, dur: 1.6, vol: 0.16, attack: 0.15, release: 1.4
+    }));
+    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1046.5, 1318.5, 1568.0];
+    notes.forEach((f, i) => {
+      bell(f, i * 0.13, 0.35, 0.26);
+    });
+    setTimeout(() => {
+      sparkle(0);
+    }, 900);
+  }
 
-    body_jump: () => { chime(784, 0, 0.15, 0.07); chime(1046, 0.12, 0.15, 0.06); return 0.4; },
-    body_wiggle: () => { purr(0, 0.6); return 0.7; },
-    body_squish: () => { tone(440, 0, 0.12, "sine", 0.06); tone(330, 0.1, 0.12, "sine", 0.05); return 0.35; },
-    body_spin: () => { chime(659, 0, 0.1, 0.05); chime(784, 0.08, 0.1, 0.05); chime(988, 0.16, 0.12, 0.05); return 0.45; },
-    body_hop: () => { chime(523, 0, 0.12, 0.06); chime(659, 0.1, 0.12, 0.06); return 0.4; },
+  const play = (name) => {
+    if (!ready) return;
+    const now = performance.now();
+    if (now < busyUntil) return;
+    const c = ensure(); if (!c) return;
+    let dur = 0.6;
+    switch (name) {
+      case "head_purr":   purr(0, 1.1); bell(880, 0.05, 0.4, 0.10); dur = 1.2; break;
+      case "head_nuzzle": meow(0, 0.45, 520, 640, 420, 0.15); meow(0.5, 0.35, 480, 560, 380, 0.13); dur = 0.95; break;
+      case "head_ear":    trill(0, [1046, 1318, 1568], 0.14); dur = 0.5; break;
+      case "head_surprise":sparkle(0); dur = 0.45; break;
+      case "head_tilt":   meow(0, 0.3, 600, 700, 460, 0.13); dur = 0.45; break;
 
-    tail_wag: () => { purr(0, 0.5); chime(698, 0.05, 0.2, 0.04); return 0.6; },
-    tail_fluff: () => { tone(300, 0, 0.15, "sawtooth", 0.04); tone(240, 0.12, 0.18, "sawtooth", 0.035); return 0.4; },
-    tail_curl: () => { meow(0, 0.3, 500, 420); return 0.45; },
-    tail_zoom: () => { tone(500, 0, 0.08, "sine", 0.05); tone(700, 0.06, 0.08, "sine", 0.05); tone(900, 0.12, 0.1, "sine", 0.04); return 0.4; },
+      case "body_jump":   bell(784, 0, 0.15, 0.18); bell(1046, 0.1, 0.15, 0.16); dur = 0.45; break;
+      case "body_wiggle": purr(0, 0.7); trill(0.1, [880, 1046, 1318], 0.12); dur = 0.85; break;
+      case "body_squish": voice({ freq: 420, freq2: 300, type: "sine", start: 0, dur: 0.22, vol: 0.16 }); bell(660, 0.05, 0.15, 0.12); dur = 0.4; break;
+      case "body_spin":   bell(659, 0, 0.1, 0.13); bell(784, 0.08, 0.1, 0.13); bell(988, 0.16, 0.12, 0.13); dur = 0.5; break;
+      case "body_hop":    bell(523, 0, 0.12, 0.16); bell(659, 0.1, 0.12, 0.15); dur = 0.45; break;
 
-    // YES celebration: louder, romantic, short sequence
-    yesFanfare: () => {
-      const c = getCtx(); if (!c) return 1.8;
-      // simple arpeggio + sparkle
-      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5, 1318.5];
-      notes.forEach((f, i) => {
-        tone(f, i * 0.16, 0.28, "sine", 0.16);
-        tone(f * 2, i * 0.16 + 0.02, 0.18, "triangle", 0.06);
-      });
-      // soft pad underneath
-      tone(261.63, 0, 1.4, "sine", 0.08);
-      tone(329.63, 0.2, 1.2, "sine", 0.06);
-      return 1.8;
+      case "tail_wag":    purr(0, 0.6); bell(698, 0.05, 0.25, 0.10); dur = 0.75; break;
+      case "tail_fluff":  voice({ freq: 320, freq2: 240, type: "triangle", start: 0, dur: 0.18, vol: 0.15 }); sparkle(0.1); dur = 0.5; break;
+      case "tail_curl":   meow(0, 0.35, 500, 620, 400, 0.13); dur = 0.5; break;
+      case "tail_zoom":   voice({ freq: 600, freq2: 900, type: "sine", start: 0, dur: 0.15, vol: 0.15 }); voice({ freq: 900, freq2: 1200, type: "sine", start: 0.1, dur: 0.15, vol: 0.13 }); dur = 0.4; break;
+
+      case "yesFanfare":  yesFanfare(); dur = 2.0; break;
     }
+    busyUntil = now + dur * 1000 + 60;
   };
 
-  function playSet(name) {
-    if (!enabled) return;
-    if (busy) return;
-    const c = getCtx(); if (!c) return;
-    busy = true;
-    clearTimeout(busyTimer);
-    const dur = sounds[name] ? (sounds[name]() || 0.6) : 0.4;
-    busyTimer = setTimeout(() => { busy = false; }, Math.max(80, dur * 1000));
-  }
+  ["pointerdown","keydown","touchstart","mousedown"].forEach(ev =>
+    window.addEventListener(ev, unlock, { once: true, passive: true })
+  );
 
-  function enable() { enabled = true; getCtx(); }  // must be triggered by user gesture
-  function disable() { enabled = false; }
-  function toggle() { enabled ? disable() : enable(); return enabled; }
-  function isOn() { return enabled; }
-
-  return { playSet, hehe, toggle, isOn, enable, disable };
+  return { play, hehe, unlock };
 })();
 
-/* Sound toggle button */
-const soundBtn = $("soundBtn");
-function updateSoundBtn() {
-  const on = Sound.isOn();
-  soundBtn.textContent = on ? "🔊" : "🔇";
-  soundBtn.setAttribute("aria-label", on ? "Sound on" : "Sound off");
-}
-soundBtn.addEventListener("click", () => {
-  Sound.toggle();
-  updateSoundBtn();
-  if (Sound.isOn()) Sound.playSet("body_jump"); // tiny confirmation blip
-});
-updateSoundBtn();
-
 /* =====================================================
-   THEME (saved in localStorage; fails gracefully)
+   THEME
    ===================================================== */
 function setTheme(t) {
   document.documentElement.dataset.theme = t;
@@ -589,7 +609,7 @@ $("themeBtn").addEventListener("click", () =>
   setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 
 /* =====================================================
-   FLOATING HEARTS (few, light, transform-only)
+   FLOATING HEARTS
    ===================================================== */
 (function floatingHearts() {
   const bg = $("bg"), glyphs = ["❤","💗","💖","♥"];
@@ -604,7 +624,6 @@ $("themeBtn").addEventListener("click", () =>
   }
 })();
 
-/* Heart confetti burst from a point */
 function burst(count, x, y) {
   if (reduceMotion) return;
   const glyphs = ["❤","💗","💖","💕","💘"];
@@ -626,17 +645,16 @@ function burstAt(el, n) {
 }
 
 /* =====================================================
-   THE UN-CLICKABLE NO BUTTON — now strictly inside the card
+   UN-CLICKABLE NO — strictly inside the card
    ===================================================== */
 const noBtn = $("noBtn"), yesBtn = $("yesBtn"), noSlot = $("noSlot");
 const cardEl = $("card");
 let noMoved = false;
 
-function overlap(a, b, pad) {
+function rectsOverlap(a, b, pad) {
   return !(a.right + pad < b.left || a.left - pad > b.right || a.bottom + pad < b.top || a.top - pad > b.bottom);
 }
 
-// Move the NO button to a random position inside the card.
 function moveNo() {
   const w = noBtn.offsetWidth, h = noBtn.offsetHeight;
   if (!noMoved) {
@@ -645,65 +663,59 @@ function moveNo() {
     noBtn.classList.add("moved"); noMoved = true;
   }
 
-  // The card is the boundary. Get its position relative to its offsetParent
-  // (the card itself is the offsetParent for an absolutely-positioned child).
-  const cardRect = cardEl.getBoundingClientRect();
-  const pad = 8; // minimum gap from card edges
-
-  // Convert screen coordinates of card's content-box to button offset coordinates.
-  // Because noBtn is position:absolute inside .card, its left/top are relative to
-  // the card's padding box (border-box minus border). We'll compute a safe range
-  // using the card's client dimensions directly.
+  const pad = 8;
   const cw = cardEl.clientWidth;
   const ch = cardEl.clientHeight;
+  const maxX = Math.max(pad, cw - w - pad);
+  const maxY = Math.max(pad, ch - h - pad);
 
-  const maxX = Math.max(0, cw - w - pad);
-  const maxY = Math.max(0, ch - h - pad);
-
-  // Elements to avoid inside the card: yes button, question, cat, say line, greet.
-  const avoidEls = [yesBtn, $("question"), cat, say, $("greet")].filter(Boolean);
-  const cardInnerRect = cardEl.getBoundingClientRect();
-  const avoidRects = avoidEls.map(e => {
-    const r = e.getBoundingClientRect();
-    // convert to coordinates relative to card's client area
+  const cardRect = cardEl.getBoundingClientRect();
+  const toLocal = (el) => {
+    const r = el.getBoundingClientRect();
     return {
-      left: r.left - cardInnerRect.left - cardEl.clientLeft,
-      top: r.top - cardInnerRect.top - cardEl.clientTop,
-      right: r.right - cardInnerRect.left - cardEl.clientLeft,
-      bottom: r.bottom - cardInnerRect.top - cardEl.clientTop,
-      width: r.width, height: r.height
+      left: r.left - cardRect.left - cardEl.clientLeft,
+      top: r.top - cardRect.top - cardEl.clientTop,
+      right: r.right - cardRect.left - cardEl.clientLeft,
+      bottom: r.bottom - cardRect.top - cardEl.clientTop
     };
-  });
+  };
+  const avoidEls = [yesBtn, $("question"), cat, say, $("greet")].filter(Boolean);
+  const avoidRects = avoidEls.map(toLocal);
 
-  // Also avoid covering the slot area itself so the button feels like it moved.
-  const currentLeft = noBtn.offsetLeft, currentTop = noBtn.offsetTop;
-
+  const curL = noBtn.offsetLeft, curT = noBtn.offsetTop;
   let best = null;
-  for (let i = 0; i < 60; i++) {
-    const x = rand(pad, Math.max(pad, maxX));
-    const y = rand(pad, Math.max(pad, maxY));
+  for (let i = 0; i < 80; i++) {
+    const x = rand(pad, maxX);
+    const y = rand(pad, maxY);
     const box = { left: x, top: y, right: x + w, bottom: y + h };
-    if (avoidRects.some(r => overlap(box, r, 6))) continue;
-    // prefer a spot not too close to current position
-    if (Math.hypot(x - currentLeft, y - currentTop) < 60 && i < 59) continue;
+    if (avoidRects.some(r => rectsOverlap(box, r, 6))) continue;
+    if (Math.hypot(x - curL, y - curT) < 55 && i < 79) continue;
     best = { x, y }; break;
   }
-  if (!best) best = { x: maxX, y: maxY }; // fallback: bottom-right inside card
+  if (!best) {
+    for (let y = pad; y <= maxY; y += 12) {
+      for (let x = pad; x <= maxX; x += 12) {
+        const box = { left: x, top: y, right: x + w, bottom: y + h };
+        if (!avoidRects.some(r => rectsOverlap(box, r, 4))) { best = { x, y }; break; }
+      }
+      if (best) break;
+    }
+  }
+  if (!best) best = { x: maxX, y: maxY };
 
   noBtn.style.left = best.x + "px";
   noBtn.style.top = best.y + "px";
 }
 
-// Desktop: dodge when the mouse gets close
 document.addEventListener("pointermove", e => {
   if (e.pointerType !== "mouse" || !$("proposal").offsetParent) return;
   const r = noBtn.getBoundingClientRect();
   const d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
   if (d < Math.max(r.width, 80)) {
+    Sound.unlock();
     setMood("surprised", 900); moveNo(); funny(pick(FUNNY));
   }
 });
-// Touch / click / keyboard: tapping NO never works, it just runs away
 noBtn.addEventListener("click", e => {
   e.preventDefault();
   Sound.hehe();
@@ -718,7 +730,7 @@ noBtn.addEventListener("pointerdown", e => {
 });
 
 /* =====================================================
-   LIVING CAT  (idle life + tap reactions)
+   LIVING CAT
    ===================================================== */
 const catWrap = $("catwrap"), allG = $("all"), tailG = $("tail"), headT = $("headT");
 const earL = cat.querySelector(".earL"), earR = cat.querySelector(".earR");
@@ -746,24 +758,24 @@ const happy = ms => setMood(baseMood === "celebrate" ? "celebrate" : "happy", ms
 
 const REACT = {
   head: [
-    () => { happy(1800); playClass(headT, "purr", 900); pop(["😽", "💗", "✨"]); Sound.playSet("head_purr"); },
-    () => { happy(1600); playClass(headT, "nuzzle", 800); pop(["🥰", "💞"]); Sound.playSet("head_nuzzle"); },
-    () => { happy(1500); playClass(earL, "twitch", 400); playClass(earR, "twitch", 400); pop(["💕", "😻"]); Sound.playSet("head_ear"); },
-    () => { setMood("surprised", 600); setTimeout(() => happy(1200), 650); pop(["❓", "✨"]); Sound.playSet("head_surprise"); },
-    () => { happy(1600); tilt(Math.random() < .5 ? "l" : "r", 1500); pop(["🥰", "💗"]); Sound.playSet("head_tilt"); }
+    () => { happy(1800); playClass(headT, "purr", 900); pop(["😽", "💗", "✨"]); Sound.play("head_purr"); },
+    () => { happy(1600); playClass(headT, "nuzzle", 800); pop(["🥰", "💞"]); Sound.play("head_nuzzle"); },
+    () => { happy(1500); playClass(earL, "twitch", 400); playClass(earR, "twitch", 400); pop(["💕", "😻"]); Sound.play("head_ear"); },
+    () => { setMood("surprised", 600); setTimeout(() => happy(1200), 650); pop(["❓", "✨"]); Sound.play("head_surprise"); },
+    () => { happy(1600); tilt(Math.random() < .5 ? "l" : "r", 1500); pop(["🥰", "💗"]); Sound.play("head_tilt"); }
   ],
   body: [
-    () => { playClass(allG, "jump", 700); pop(["🐾", "✨"]); Sound.playSet("body_jump"); },
-    () => { playClass(allG, "wiggle", 700); happy(1000); pop(["😹", "💗"]); Sound.playSet("body_wiggle"); },
-    () => { playClass(allG, "squish", 600); setMood("surprised", 600); pop(["💫", "🐾"]); Sound.playSet("body_squish"); },
-    () => { playClass(allG, "spin", 800); pop(["🌀", "😸"]); Sound.playSet("body_spin"); },
-    () => { playClass(allG, "hop", 800); happy(1100); pop(["🎀", "😻"]); Sound.playSet("body_hop"); }
+    () => { playClass(allG, "jump", 700); pop(["🐾", "✨"]); Sound.play("body_jump"); },
+    () => { playClass(allG, "wiggle", 700); happy(1000); pop(["😹", "💗"]); Sound.play("body_wiggle"); },
+    () => { playClass(allG, "squish", 600); setMood("surprised", 600); pop(["💫", "🐾"]); Sound.play("body_squish"); },
+    () => { playClass(allG, "spin", 800); pop(["🌀", "😸"]); Sound.play("body_spin"); },
+    () => { playClass(allG, "hop", 800); happy(1100); pop(["🎀", "😻"]); Sound.play("body_hop"); }
   ],
   tail: [
-    () => { playClass(tailG, "wag", 1000); happy(1100); pop(["🐾", "😺"]); Sound.playSet("tail_wag"); },
-    () => { playClass(tailG, "fluff", 900); setMood("surprised", 900); pop(["😳", "❗"]); Sound.playSet("tail_fluff"); },
-    () => { playClass(tailG, "curl", 1100); look("r", 1100); pop(["🌀", "😼"]); Sound.playSet("tail_curl"); },
-    () => { playClass(tailG, "zoom", 1300); look("r", 1300); setMood("surprised", 500); pop(["💨", "😹"]); Sound.playSet("tail_zoom"); }
+    () => { playClass(tailG, "wag", 1000); happy(1100); pop(["🐾", "😺"]); Sound.play("tail_wag"); },
+    () => { playClass(tailG, "fluff", 900); setMood("surprised", 900); pop(["😳", "❗"]); Sound.play("tail_fluff"); },
+    () => { playClass(tailG, "curl", 1100); look("r", 1100); pop(["🌀", "😼"]); Sound.play("tail_curl"); },
+    () => { playClass(tailG, "zoom", 1300); look("r", 1300); setMood("surprised", 500); pop(["💨", "😹"]); Sound.play("tail_zoom"); }
   ]
 };
 
@@ -781,7 +793,6 @@ catWrap.addEventListener("click", e => {
   funny(pick(FUNNY));
 });
 
-// Hold the head = petting
 let holdT = null, purrI = null, held = false;
 function stopPurr() {
   clearTimeout(holdT); holdT = null;
@@ -794,14 +805,13 @@ catWrap.addEventListener("pointerdown", e => {
   holdT = setTimeout(() => {
     held = true; setMood(baseMood === "celebrate" ? "celebrate" : "happy"); pop(["😽", "💗"]);
     playClass(headT, "purr", 900);
-    Sound.playSet("head_purr");
-    purrI = setInterval(() => { playClass(headT, "purr", 900); pop(["💗", "✨", "😽"]); Sound.playSet("head_purr"); }, 1000);
+    Sound.play("head_purr");
+    purrI = setInterval(() => { playClass(headT, "purr", 900); pop(["💗", "✨", "😽"]); Sound.play("head_purr"); }, 1100);
   }, 450);
 });
 ["pointerup", "pointercancel", "pointerleave"].forEach(ev => catWrap.addEventListener(ev, stopPurr));
 catWrap.addEventListener("contextmenu", e => e.preventDefault());
 
-// Eyes follow your finger / mouse
 if (!reduceMotion) {
   let eyeRaf = 0, ex = 0, ey = 0;
   const follow = e => {
@@ -820,7 +830,6 @@ if (!reduceMotion) {
   document.addEventListener("pointerdown", follow, { passive: true });
 }
 
-// Idle life
 if (!reduceMotion) {
   const blink = ms => { cat.classList.add("blink"); setTimeout(() => cat.classList.remove("blink"), ms || 110); };
   (function blinkLoop() {
@@ -850,10 +859,10 @@ if (!reduceMotion) {
 window.addEventListener("resize", () => { if (noMoved && $("celebrate").classList.contains("hidden")) moveNo(); });
 
 /* =====================================================
-   YES CLICKED
+   YES
    ===================================================== */
 yesBtn.addEventListener("click", () => {
-  Sound.playSet("yesFanfare");
+  Sound.play("yesFanfare");
   noBtn.classList.add("hidden"); noBtn.style.display = "none";
   $("proposal").classList.add("hidden");
   $("celebrate").classList.remove("hidden");
@@ -870,7 +879,7 @@ yesBtn.addEventListener("click", () => {
 let giftOpened = false;
 $("giftBtn").addEventListener("click", () => {
   if (giftOpened) return; giftOpened = true;
-  Sound.playSet("body_hop");
+  Sound.play("body_hop");
   $("giftBtn").classList.add("open");
   $("giftBtn").setAttribute("aria-label", "Gift opened");
   $("surprise").classList.remove("hidden");
@@ -889,14 +898,14 @@ $("envBtn").addEventListener("click", () => {
   env.setAttribute("aria-label", open ? "Close the love letter" : "Open the love letter");
   $("letter").classList.toggle("hidden", !open);
   if (open) {
-    Sound.playSet("head_tilt");
+    Sound.play("head_tilt");
     burstAt(env, 18);
     setTimeout(() => $("letter").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }), 350);
   }
 });
 
 /* =====================================================
-   LINK SYSTEM  (?from=Rahim&to=Anika&msg=Hello)
+   LINK SYSTEM
    ===================================================== */
 const LIMIT = { name: 30, msg: 200 };
 const clean = (v, max) => String(v || "").replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
@@ -963,7 +972,7 @@ $("makerForm").addEventListener("submit", e => {
   $("waBtn").href = "https://wa.me/?text=" + encodeURIComponent("Hey " + to + "! " + from + " has something to ask you ❤️\n" + generatedUrl);
   $("result").classList.remove("hidden");
   setMood("happy", 2500); burstAt(cat, 16);
-  Sound.playSet("body_hop");
+  Sound.play("body_hop");
   $("formErr").textContent = "";
   $("result").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
 });
@@ -974,7 +983,6 @@ $("copyBtn").addEventListener("click", () =>
   if (now !== snapshot) $("result").classList.add("hidden");
 }));
 
-// Decide which screen to show
 if (qFrom && qTo) showProposal(qFrom, qTo, qMsg); else showMaker();
 </script>
 </body>
